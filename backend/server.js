@@ -2,6 +2,9 @@ import dotenv from "dotenv"
 import express, { json } from "express";
 import cors from "cors";
 import path from "path";
+import connectDB from "./config/db.js"
+
+dotenv.config();
 
 const app = express();
 
@@ -16,6 +19,9 @@ app.use(
 
 //Middleware
 app.use(json());
+
+//Connect DB
+connectDB();
 
 //Routes
 //app.use("/api/auth", authRoutes);
