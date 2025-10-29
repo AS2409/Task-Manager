@@ -1,13 +1,13 @@
 import dotenv from "dotenv"
-import express, { json } from "express";
+import express from "express";
 import cors from "cors";
 import path from "path";
 import connectDB from "./config/db.js"
-
+import authRoutes from "./routes/authRoutes.js"
 dotenv.config();
 
 const app = express();
-
+app.use(express.json());
 //Middleware to handle CORS
 app.use(
     cors({
@@ -18,13 +18,13 @@ app.use(
 );
 
 //Middleware
-app.use(json());
+
 
 //Connect DB
 connectDB();
 
 //Routes
-//app.use("/api/auth", authRoutes);
+app.use("/api/auth", authRoutes);
 //app.use("/api/users", userRoutes);
 //app.use("/api/tasks", taskRoutes);
 //app.use("/api/reporst", reporstRoutes);
